@@ -1,0 +1,29 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+<h3>Hei</h3>
+
+<script>
+    var gameIndex;
+
+
+    async function newGame() {
+        let response = await axios.post('/api/guessthenumber');
+        gameIndex = response.data;
+        console.log(`created game ${gameIndex}`);
+    };
+
+    async function guess(number) {
+        let response = await axios.put('/api/guessthenumber/' + gameIndex, { number });
+        let evaluation = response.data;
+        console.log(`guess ${number} => ${evaluation}`);
+    };
+
+</script>
+</body>
+</html>
